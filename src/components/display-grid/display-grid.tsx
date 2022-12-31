@@ -5,7 +5,7 @@ import { CardContainer } from '../card/card-container';
 
 export const DisplayGrid = () => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, padding: "1rem"}}>
       <Grid container spacing={2} columns={{ xs: 4, sm: 9, md: 12 }}>
         <Grid item xs={2} sm={3} md={3}>
           <CardContainer />

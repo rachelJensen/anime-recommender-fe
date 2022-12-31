@@ -10,7 +10,7 @@ const genres = ['Action', 'Romance', 'Comedy', 'Drama', 'Horror', 'Suspense', 'F
 
 const SelectorStyle = styled.aside`
   {
-    width: 200px;
+    width: 18vw;
     padding: 1rem;
   }
 `
