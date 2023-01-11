@@ -5,11 +5,17 @@ import { useSearch } from "../../helpers/useSearch";
 
 export const SearchInput = () => {
     const [searchText, setSearchText] = useState('')
-    const { searchData, setSearchData } = useSearch();
+    const { setQuery } = useSearch();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchText(e.target.value)
     };
+
+    const handleSubmit = (e: React.SyntheticEvent) => {
+        e.preventDefault();
+        setQuery(searchText);
+        setSearchText('');
+    }
 
     return (
         <form>
@@ -22,9 +28,7 @@ export const SearchInput = () => {
             />
             <button
               onClick={(e) => {
-                e.preventDefault();
-                setSearchData({...searchData, searchText: searchText});
-                setSearchText('');
+                handleSubmit(e);
               }}>
                 Search
             </button>

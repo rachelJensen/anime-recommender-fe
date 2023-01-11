@@ -1,28 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { SearchContext } from "../components/App";
 
 type SearchResult = {
-  searchData: {
-    searchText: string;
-    results: Array<any>;
-  };
-  setSearchData: Function;
+  query: string;
+  setQuery: Function;
 };
 
 export const useSearch = (): SearchResult => {
-  const [searchData, setSearchData] = useState({
-    searchText: '',
-    results: []
-  });
+  const [query, setQuery] = useState('');
+  const { updateSearchResults, updateSearchText } = useContext(SearchContext)
 
 
   useEffect(() => {
-    if (searchData.searchText !== "") {
+    if (query !== "") {
         const getSearchResults = async () => {
           try {
-            const res = await fetch(`https://api.jikan.moe/v4/anime?q=${searchData.searchText}&sfw`);
+            const res = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&sfw`);
             const response = await res.json();
             console.log({response})
-            setSearchData({ ...searchData, results: response.data });
+            updateSearchText(query);
+            updateSearchResults(response.data)
           } catch (err) {
             console.error(err);
           }
@@ -30,10 +27,10 @@ export const useSearch = (): SearchResult => {
 
         getSearchResults();
     }
-  }, [searchData.searchText]);
+  }, [query]);
 
   return {
-    searchData,
-    setSearchData
+    query,
+    setQuery
   };
 };
