@@ -1,5 +1,5 @@
 # Anime Recommender App
-A learning project
+A learning project built with React and TypeScript
 
 <!-- # Getting Started with Create React App
 
