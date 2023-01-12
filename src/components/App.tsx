@@ -10,7 +10,9 @@ type SearchResults = {
   animes: Array<AnimeDetails> | null,
   updateSearchResults: Function,
   searchText: string, 
-  updateSearchText: Function
+  updateSearchText: Function;
+  selectedGenres: Array<String>;
+  updateSelectedGenres: Function;
 };
 
 export const SearchContext = createContext({} as SearchResults);
@@ -19,16 +21,29 @@ function App() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [animes, setAnimes] = useState([] as Array<AnimeDetails>);
-  const [searchText, setSearchText] = useState("")
-  console.log({animes})
-  console.log({searchText})
+  const [searchText, setSearchText] = useState("");
+  const [selectedGenres, setSelectedGenres] = useState([] as Array<String>);
+
+  // console.log({animes})
+  // console.log({searchText})
+  console.log({selectedGenres})
   
+  //TO DO: Separate update helper functions to Context file
   const updateSearchResults = (newResults: Array<AnimeDetails>):void => {
     setAnimes(newResults)
   }
 
   const updateSearchText = (searchTerm: string) => {
     setSearchText(searchTerm);
+  }
+
+  const updateSelectedGenres = (genre: string, isChecked: boolean) => {
+    if (isChecked) {
+      setSelectedGenres([...selectedGenres, genre])
+    } else {
+      const updatedGenres = selectedGenres.filter(name => name !== genre)
+      setSelectedGenres(updatedGenres)
+    }
   }
 
   useEffect(() => {
@@ -44,7 +59,9 @@ function App() {
           animes, 
           updateSearchResults, 
           searchText, 
-          updateSearchText
+          updateSearchText,
+          selectedGenres,
+          updateSelectedGenres
         }}>
         <Header />
 
