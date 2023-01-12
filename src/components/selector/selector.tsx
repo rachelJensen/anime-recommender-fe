@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import FormGroup from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import genres from '../../helpers/genres';
+import genreCodes from '../../helpers/genres';
 import { Selection } from './checkbox';
 
 const SelectorStyle = styled.aside`
@@ -13,7 +13,7 @@ const SelectorStyle = styled.aside`
 `
 
 export const Selector = () => {
-    const genreList = Object.keys(genres);
+    const genreList = Object.keys(genreCodes);
 
     return (
       <SelectorStyle>

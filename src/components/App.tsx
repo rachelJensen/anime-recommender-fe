@@ -11,7 +11,7 @@ type SearchResults = {
   updateSearchResults: Function,
   searchText: string, 
   updateSearchText: Function;
-  selectedGenres: Array<String>;
+  selectedGenres: Array<string>;
   updateSelectedGenres: Function;
 };
 
@@ -22,7 +22,7 @@ function App() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [animes, setAnimes] = useState([] as Array<AnimeDetails>);
   const [searchText, setSearchText] = useState("");
-  const [selectedGenres, setSelectedGenres] = useState([] as Array<String>);
+  const [selectedGenres, setSelectedGenres] = useState([] as Array<string>);
 
   // console.log({animes})
   // console.log({searchText})
@@ -46,11 +46,11 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    fetch('https://api.jikan.moe/v4/recommendations/anime')
-      .then(res => res.json())
-      .then(data => updateSearchResults(data.data))
-  }, [])
+  // useEffect(() => {
+  //   fetch('https://api.jikan.moe/v4/recommendations/anime')
+  //     .then(res => res.json())
+  //     .then(data => updateSearchResults(data.data))
+  // }, [])
 
   return (
     <div className="App">
